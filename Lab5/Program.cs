@@ -16,53 +16,71 @@ namespace Lab5
             Console.WriteLine(" Welcome to the Grand Circus Casino");
             Console.WriteLine("Roll the dice?");
             UserInput = Console.ReadLine();
+   
             //user decides to play or not
 
             bool userDecision = true;
             while (userDecision == true)
             {
+                string sideOfDice;
+                
                 if (UserInput == "Yes" || UserInput == "yes")
                     
                 {
+                    bool answer1 = true;
+                    while (answer1 == true)
+                    {
+                        Console.WriteLine("How many sides each dice will have?");
+                        sideOfDice = Console.ReadLine();
+                        Console.WriteLine(Dice(1, int.Parse(sideOfDice) + 1));
+                        Console.WriteLine(Dice(1, int.Parse(sideOfDice) + 1));
+                        Console.WriteLine("Would You like to play again?");
+
+                        string answer = Console.ReadLine();
 
 
-                    Console.WriteLine("Good Luck!");
-                    Console.WriteLine("How many sides each dice will have?");
-                    string sideOfDice;
-                    sideOfDice = Console.ReadLine();
+                        if (answer == "no" || answer == "No" || answer == "NO")
+                        {
+                            userDecision = false;
+                            break;
+                            
+                        }
+
+                        else if (answer == "yes" || answer == "YES" || answer == "Yes")
+                        {
+
+                            Console.WriteLine("Good Luck!");
 
 
-                    Console.WriteLine(Dice(1, int.Parse(sideOfDice)));
-                    Console.WriteLine(Dice(1, int.Parse(sideOfDice)));
-                    Console.WriteLine("Would You like to play again?");
+                        }
+
+
+                    }
+                    
 
                 }
 
                 else
                 {
                     Console.WriteLine("Good, we dont wanna see you here!");
-                   
-                }
-
-                   
-                string userAnswer = Console.ReadLine();
-                if (userAnswer == "No" || userAnswer == "no")
-                {
                     userDecision = false;
-                    Console.WriteLine("Adios!");
                 }
 
+                 
+
+                
                  
             }
 
 
 
         }
-        static Random dice = new Random();
-        public static int Dice(int x, int y)
 
+        public static int Dice(int x, int y) 
+       
         {
-           
+
+            Random dice = new Random(Guid.NewGuid().GetHashCode()); ///generates two different random numbers
             int Result1 = dice.Next(x, y);
 
             return Result1;
